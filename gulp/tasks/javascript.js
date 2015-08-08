@@ -1,49 +1,27 @@
 var gulp = require('gulp'),
-    source = require('vinyl-source-stream'),
-    buffer = require('vinyl-buffer'),
-    browserify = require('browserify'),
-    watchify = require('watchify'),
     gutil = require('gulp-util'),
+    concat = require('gulp-concat'),
     size = require('gulp-size'),
     uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish');
 
-var entries = [
-    './src/js/app.js'
-];
-
-var b,
-    initialized = false;
-
-function bundle() {
-    return b
-        .bundle()
-        .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-        .pipe(source('script.js'))
-        .pipe(buffer())
+gulp.task('javascript:concat', function() {
+    return gulp.src([
+        './src/js/**/*.js',
+        '!./src/js/modernizr/**/*'
+    ])
+        .pipe(concat('script.js'))
         .pipe(uglify())
         .pipe(size())
         .pipe(gulp.dest('./build/js'));
-}
-
-gulp.task('javascript:browserify', function() {
-    b = browserify({
-        entries: entries
-    });
-
-    bundle();
 });
 
-gulp.task('javascript:browserify:watch', function() {
-    b = watchify(browserify({
-        entries: entries
-    }));
-
-    b.on('log', gutil.log);
-    b.on('update', bundle);
-
-    bundle();
+gulp.task('javascript:concat:watch', function() {
+    return gulp.watch([
+        'src/js/**/*.js',
+        '!src/js/modernizr/**/*'
+    ], ['javascript:concat']);
 });
 
 gulp.task('javascript:hint', function() {

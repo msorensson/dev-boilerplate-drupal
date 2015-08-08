@@ -2,7 +2,7 @@ var gulp = require('gulp');
 
 gulp.task('default', [
     'sass',
-    'javascript:browserify',
+    'javascript:concat',
     'javascript:hint',
     'javascript:modernizr',
     'handlebars',
