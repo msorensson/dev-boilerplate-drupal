@@ -1,0 +1,26 @@
+name = Base theme
+description = Theme created by <a href="http://www.kokonut.se" target="_blank">Kokonut Webbstudio</a>.
+package = Core
+version = VERSION
+core = 7.x
+
+stylesheets[all][] = css/style.css
+stylesheets[all][] = system.messages.css
+stylesheets[all][] = system.menus.css
+stylesheets[all][] = system.base.css
+stylesheets[all][] = system.theme.css
+stylesheets[all][] = field.css
+stylesheets[all][] = node.css
+stylesheets[all][] = user.css
+stylesheets[all][] = views.css
+
+regions[header] = Header
+regions[navigation] = Navigation
+regions[content_top] = Content Top
+regions[content] = Content
+regions[content_bottom] = Content Bottom
+regions[sidebar_first] = First sidebar
+regions[sidebar_second] = Second sidebar
+regions[footer] = Footer
+
+scripts[] = js/script.js
